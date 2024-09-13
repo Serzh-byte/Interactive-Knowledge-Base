@@ -8,4 +8,8 @@
     <h1>{{ title }}</h1>
     <div>{{ content | safe }}</div>
     <a href="{% url 'edit_page' title %}" class="btn btn-secondary mt-3">Edit Page</a>
+    <form method="POST" action="{% url 'delete_page' title %}" style="display:inline;">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-danger mt-3">Delete Page</button>
+    </form>
 {% endblock %}

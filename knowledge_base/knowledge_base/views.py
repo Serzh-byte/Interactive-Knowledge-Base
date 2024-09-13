@@ -1,7 +1,8 @@
 from django.shortcuts import render, redirect, Http404
 from django import forms
+from django.contrib import messages  # Import messages for notifications
+import random
 from . import utils
-from difflib import get_close_matches
 
 def index(request):
     return render(request, "knowledge_base/home.html", {
@@ -99,3 +100,27 @@ def search(request):
         "query": query,
         "results": results
     })
+
+def random_page(request):
+    # Get all the available entries
+    entries = utils.list_entries()   
+    
+    # Pick a random entry
+    random_entry = random.choice(entries)
+    
+    # Redirect to the selected random entry's page
+    return redirect('entry', title=random_entry)
+
+def delete_page(request, title):
+    # Check if the entry exists
+    if utils.get_entry(title):
+        # Delete the entry
+        utils.delete_entry(title)
+        # Add a success message
+        messages.success(request, f'Entry "{title}" has been deleted.')
+        # Redirect to the index page
+        return redirect('index')
+    else:
+        # Add an error message
+        messages.error(request, 'Entry not found.')
+        return redirect('index')

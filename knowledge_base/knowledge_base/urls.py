@@ -25,5 +25,7 @@ urlpatterns = [
     path("<str:title>", views.entry, name="entry"),
     path('add/', views.add_book, name='add_book'),
     path('<str:title>/edit', views.edit_page, name='edit_page'),
-    path("search/", views.search, name="search")
+    path("search/", views.search, name="search"),
+    path('random/', views.random_page, name='random_page'),
+    path('<str:title>/delete', views.delete_page, name='delete_page')
 ]

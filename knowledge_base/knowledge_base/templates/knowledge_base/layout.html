@@ -41,7 +41,7 @@
 </head>
 <body>
     <div class="sidebar">
-        <form method="GET" class="search d-flex mb-4">
+        <form method="GET" action="{% url 'search' %}" class="search d-flex mb-4">
             <input class="form-control me-2" type="text" name="q" placeholder="Search Books">
             <button class="search-button" type="submit">
                 <i class="bi bi-search"></i> Search

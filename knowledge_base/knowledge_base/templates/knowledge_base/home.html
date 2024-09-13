@@ -5,10 +5,15 @@
 {% endblock %}
 
 {% block body %}
-    <h1 style="margin-left: 20px;">All The Books</h1>
-    <ul style="margin-left: 20px;">
-        {% for entry in entries %}
-            <li><a href="{% url 'entry' entry %}">{{ entry }}</a></li>
-        {% endfor %}
-    </ul>
+    <div class="container mt-4">
+        <h1 class="mb-4">All The Books</h1>
+        <ul class="list-group">
+            {% for entry in entries %}
+                <li class="list-group-item d-flex justify-content-between align-items-center">
+                    <a href="{% url 'entry' entry %}" class="text-decoration-none">{{ entry }}</a>
+                    <span class="badge bg-primary rounded-pill">Read</span>
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
 {% endblock %}

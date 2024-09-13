@@ -25,4 +25,5 @@ urlpatterns = [
     path("<str:title>", views.entry, name="entry"),
     path('add/', views.add_book, name='add_book'),
     path('<str:title>/edit', views.edit_page, name='edit_page'),
+    path("search/", views.search, name="search")
 ]

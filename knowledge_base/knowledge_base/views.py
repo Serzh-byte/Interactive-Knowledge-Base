@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect, Http404
 from django import forms
 from . import utils
+from difflib import get_close_matches
 
 def index(request):
     return render(request, "knowledge_base/home.html", {
@@ -70,4 +71,31 @@ def edit_page(request, title):
     return render(request, "knowledge_base/edit_page.html", {
         "form": form,
         "title": title
+    })
+
+def search(request):
+    query = request.GET.get("q", "").strip().lower()
+    if not query:
+        return render(request, "knowledge_base/search_results.html", {
+            "query": query,
+            "results": []
+        })
+
+    entries = utils.list_entries()
+    
+    # Exact match
+    if query in [entry.lower() for entry in entries]:
+        return redirect("entry", title=next(entry for entry in entries if entry.lower() == query))
+    
+    # Partial match
+    results = [entry for entry in entries if query in entry.lower()]
+    
+    # If no partial matches, try fuzzy matching
+    if not results:
+        from difflib import get_close_matches
+        results = get_close_matches(query, entries, n=5, cutoff=0.6)
+
+    return render(request, "knowledge_base/search_results.html", {
+        "query": query,
+        "results": results
     })

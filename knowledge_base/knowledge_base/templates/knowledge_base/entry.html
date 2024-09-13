@@ -1,0 +1,10 @@
+{% extends "knowledge_base/layout.html" %}
+
+{% block title %}
+    {{ title }}
+{% endblock %}
+
+{% block body %}
+    <h1>{{ title }}</h1>
+    <div>{{ content | safe }}</div>
+{% endblock %}

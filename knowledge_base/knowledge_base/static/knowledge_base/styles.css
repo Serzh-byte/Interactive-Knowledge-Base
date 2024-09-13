@@ -1,18 +1,85 @@
-/* style.css */
+/* General Styles */
+body {
+    font-family: 'Arial', sans-serif; /* Modern, clean font */
+    background-color: #f4f7f6; /* Light background color for the whole page */
+    margin: 0;
+    padding: 0;
+}
 
-/* Sidebar Styling */
+/* Sidebar Styles */
 .sidebar {
     height: 100vh; /* Full viewport height */
-    padding: 20px;
     box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+    position: fixed; /* Make the sidebar fixed */
+    width: 300px; /* Set a fixed width */
+    left: 0; /* Align to the left edge */
+    background-color: #ffffff; /* White background for sidebar */
+    padding: 20px; /* Add padding inside the sidebar */
+    border-right: 1px solid #e0e0e0; /* Light border for separation */
 }
 
-.sidebar h1 {
-    font-size: 1.5rem;
-    color: #343a40; /* Dark gray for better readability */
-    text-align: center;
-    padding: 10px;
-    background-color: #f8f9fa; /* Light background color */
-    border-radius: 5px;
+/* Content Styles */
+.content {
+    margin-left: 300px; /* Offset the content by the width of the sidebar */
+    padding: 20px; /* Add padding inside the content area */
+    background-color: #ffffff; /* White background for content */
+    border-radius: 8px; /* Rounded corners for content area */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow */
 }
 
+/* Search Button Styles */
+.search-button {
+    background-color: #007bff; /* Bootstrap primary color */
+    border: none; /* Remove default border */
+    border-radius: 30px; /* Rounded button */
+    padding: 10px 20px; /* Add some padding */
+    color: #ffffff; /* Text color */
+    font-size: 1rem; /* Increase font size */
+    transition: background-color 0.3s ease; /* Smooth color transition */
+}
+
+.search-button:hover {
+    background-color: #0056b3; /* Darker shade on hover */
+    cursor: pointer; /* Pointer cursor on hover */
+}
+
+/* Sidebar Button Group Styles */
+.btn-group-vertical {
+    display: flex;
+    flex-direction: column;
+}
+
+.btn-group-vertical .btn {
+    margin-bottom: 10px; /* Space between buttons */
+    padding: 10px 20px; /* Padding inside buttons */
+    color: #333; /* Text color */
+    font-size: 1rem; /* Font size */
+    text-align: left; /* Align text to the left */
+}
+
+.btn-group-vertical .btn:hover {
+    background-color: #f8f9fa; /* Light background on hover */
+    color: #007bff; /* Change text color on hover */
+}
+
+/* Heading Styles */
+h1 {
+    font-size: 1.5rem; /* Adjust heading size */
+    color: #343a40; /* Dark gray color for headings */
+    border-bottom: 2px solid #007bff; /* Blue underline for headings */
+    padding-bottom: 10px; /* Padding below the heading */
+    margin-bottom: 20px; /* Space below the heading */
+}
+
+/* Responsive Design */
+@media (max-width: 992px) {
+    .content {
+        margin-left: 0; /* Remove margin on smaller screens */
+    }
+    .sidebar {
+        width: 100%; /* Full width on smaller screens */
+        position: relative; /* Change to relative position */
+        border-right: none; /* Remove right border */
+        box-shadow: none; /* Remove shadow */
+    }
+}

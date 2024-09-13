@@ -5,5 +5,10 @@
 {% endblock %}
 
 {% block body %}
-    <h1>All Pages</h1>
+    <h1 style="margin-left: 20px;">All The Books</h1>
+    <ul style="margin-left: 20px;">
+        {% for entry in entries %}
+            <li><a href="{% url 'entry' entry %}">{{ entry }}</a></li>
+        {% endfor %}
+    </ul>
 {% endblock %}

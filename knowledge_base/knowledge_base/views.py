@@ -42,3 +42,32 @@ def add_book(request):
         form = NewPageForm()
 
     return render(request, "knowledge_base/add_book.html", {"form": form})
+
+class EditPageForm(forms.Form):
+    content = forms.CharField(widget=forms.Textarea(attrs={'class': 'form-control'}), label="Content")
+
+def edit_page(request, title):
+    # Get the current entry content
+    entry = utils.get_entry(title)
+
+    if entry is None:
+        raise Http404("Entry not found")
+
+    # If the form was submitted, process the changes
+    if request.method == "POST":
+        form = EditPageForm(request.POST)
+        if form.is_valid():
+            # Get the updated content from the form
+            updated_content = form.cleaned_data["content"]
+            # Save the updated content
+            utils.save_entry(title, updated_content)
+            # Redirect to the updated entry's page
+            return redirect('entry', title=title)
+
+    # For a GET request, pre-populate the form with the existing content
+    form = EditPageForm(initial={"content": entry})
+
+    return render(request, "encyclopedia/edit_page.html", {
+        "form": form,
+        "title": title
+    })

@@ -1,1 +1,1 @@
-crazy amount of cp
+pretty fun to read

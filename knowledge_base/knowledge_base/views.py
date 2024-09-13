@@ -67,7 +67,7 @@ def edit_page(request, title):
     # For a GET request, pre-populate the form with the existing content
     form = EditPageForm(initial={"content": entry})
 
-    return render(request, "encyclopedia/edit_page.html", {
+    return render(request, "knowledge_base/edit_page.html", {
         "form": form,
         "title": title
     })
